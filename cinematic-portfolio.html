@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome To Business</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+/* ═══════════════════════════════════
+   PHASE 1 — BEGINNER WEBSITE
+═══════════════════════════════════ */
+#phase1 {
+  background: #f0f0f0;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  color: #000;
+}
+
+.beginner-header {
+  background: #003399;
+  padding: 10px;
+  text-align: center;
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+  border-bottom: 3px solid #000080;
+}
+
+.beginner-nav {
+  background: #cccccc;
+  padding: 6px 10px;
+  border-bottom: 2px solid #999;
+  display: flex;
+  gap: 4px;
+}
+
+.beginner-nav a {
+  background: #003399;
+  color: white;
+  padding: 4px 12px;
+  text-decoration: none;
+  font-size: 13px;
+  border: 1px solid #000080;
+}
+
+.beginner-nav a:hover { background: #0055cc; }
+
+.beginner-body {
+  padding: 20px;
+  max-width: 900px;
+}
+
+.beginner-body h2 {
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: #000080;
+  text-decoration: underline;
+}
+
+.beginner-body p {
+  font-size: 13px;
+  line-height: 1.5;
+  margin-bottom: 14px;
+  color: #333;
+}
+
+.beginner-table {
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  font-size: 13px;
+}
+
+.beginner-table td, .beginner-table th {
+  border: 1px solid #999;
+  padding: 4px 10px;
+  background: #e8e8e8;
+}
+
+.beginner-table th { background: #cccccc; font-weight: bold; }
+
+.beginner-btn {
+  background: #003399;
+  color: white;
+  border: 2px solid #000080;
+  padding: 6px 16px;
+  font-size: 13px;
+  cursor: pointer;
+  font-family: Arial;
+  margin-right: 6px;
+}
+
+.beginner-marquee {
+  background: #ffff00;
+  color: #cc0000;
+  font-size: 13px;
+  font-weight: bold;
+  padding: 4px;
+  margin: 10px 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marquee-inner {
+  display: inline-block;
+  animation: marqueeScroll 12s linear infinite;
+}
+
+@keyframes marqueeScroll {
+  from { transform: translateX(100vw); }
+  to { transform: translateX(-100%); }
+}
+
+.beginner-img-placeholder {
+  width: 160px; height: 120px;
+  background: #cccccc;
+  border: 2px solid #999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: #666;
+  float: left;
+  margin: 0 12px 8px 0;
+}
+
+.beginner-counter {
+  font-size: 12px;
+  color: #666;
+  margin: 10px 0;
+}
+
+.beginner-footer {
+  background: #cccccc;
+  border-top: 2px solid #999;
+  padding: 8px 10px;
+  font-size: 11px;
+  color: #333;
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* ─── TRANSITION ZONE ─── */
+#transition-zone {
+  position: relative;
+  min-height: 100vh;
+  background: #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+#dark-overlay {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  opacity: 0;
+  transition: opacity 2s ease;
+  z-index: 1;
+}
+
+#particle-canvas {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 2s ease 1s;
+  z-index: 2;
+}
+
+.transition-content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  padding: 40px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1.5s ease 2s;
+}
+
+.transition-content.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cinematic-text {
+  font-family: 'Exo 2', sans-serif;
+  font-size: clamp(20px, 3.5vw, 36px);
+  font-weight: 300;
+  font-style: italic;
+  color: #ffffff;
+  line-height: 2;
+  letter-spacing: 2px;
+  margin-bottom: 48px;
+}
+
+.cinematic-text .line {
+  display: block;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s ease;
+}
+
+.cinematic-text .line.show { opacity: 1; transform: translateY(0); }
+.cinematic-text .highlight { color: #00d4ff; font-style: normal; font-weight: 700; }
+
+.enter-btn {
+  position: relative;
+  background: transparent;
+  border: 1px solid #00d4ff;
+  color: #00d4ff;
+  font-family: 'Orbitron', monospace;
+  font-size: 14px;
+  letter-spacing: 4px;
+  padding: 18px 48px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+.enter-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #00d4ff;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+  z-index: -1;
+}
+
+.enter-btn:hover { color: #000; box-shadow: 0 0 40px rgba(0,212,255,0.5); }
+.enter-btn:hover::before { transform: scaleX(1); }
+
+.enter-btn .btn-glow {
+  position: absolute;
+  inset: -2px;
+  border: 1px solid rgba(0,212,255,0.3);
+  animation: glowPulse 2s infinite;
+}
+
+@keyframes glowPulse {
+  0%,100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.02); }
+}
+
+/* ═══════════════════════════════════
+   FULL PAGE TRANSITION
+═══════════════════════════════════ */
+#warp-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0;
+}
+
+#warp-transition.active { opacity: 1; pointer-events: all; }
+
+#warp-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+}
+
+.warp-text {
+  position: relative;
+  z-index: 1;
+  font-family: 'Orbitron', monospace;
+  font-size: 48px;
+  font-weight: 900;
+  color: #00d4ff;
+  text-shadow: 0 0 60px rgba(0,212,255,0.8);
+  opacity: 0;
+  letter-spacing: 6px;
+  animation: none;
+}
+
+/* ═══════════════════════════════════
+   PHASE 2 — MODERN FUTURISTIC
+═══════════════════════════════════ */
+#phase2 {
+  display: none;
+  background: #020008;
+  color: white;
+  overflow-x: hidden;
+}
+
+#phase2.show { display: block; }
+
+/* Custom cursor */
+#cursor-dot {
+  width: 8px; height: 8px;
+  background: #00d4ff;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%,-50%);
+  transition: transform 0.1s;
+}
+
+#cursor-ring {
+  width: 32px; height: 32px;
+  border: 1px solid rgba(0,212,255,0.5);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9997;
+  transform: translate(-50%,-50%);
+}
+
+/* Hero */
+#hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+#hero-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.hero-label {
+  font-family: 'Orbitron', monospace;
+  font-size: 11px;
+  letter-spacing: 6px;
+  color: #00d4ff;
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: heroReveal 1s ease 0.5s forwards;
+}
+
+.hero-title {
+  font-family: 'Orbitron', monospace;
+  font-size: clamp(36px, 6vw, 80px);
+  font-weight: 900;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  opacity: 0;
+  animation: heroReveal 1s ease 0.8s forwards;
+}
+
+.hero-title .glow { color: #00d4ff; text-shadow: 0 0 40px rgba(0,212,255,0.6); }
+
+.hero-sub {
+  font-family: 'Exo 2', sans-serif;
+  font-size: 16px;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 3px;
+  margin-top: 20px;
+  opacity: 0;
+  animation: heroReveal 1s ease 1.1s forwards;
+}
+
+.scroll-hint {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Orbitron', monospace;
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: rgba(0,212,255,0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  animation: float 2s ease-in-out infinite;
+}
+
+.scroll-line {
+  width: 1px; height: 40px;
+  background: linear-gradient(to bottom, #00d4ff, transparent);
+}
+
+@keyframes heroReveal {
+  from { opacity:0; transform: translateY(30px); }
+  to { opacity:1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%,100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* Glass Panel Section */
+#glass-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 40px;
+  position: relative;
+}
+
+.glass-panel {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(0,212,255,0.2);
+  backdrop-filter: blur(20px);
+  padding: 60px;
+  max-width: 700px;
+  width: 100%;
+  position: relative;
+  transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+  transition: transform 0.1s ease;
+  box-shadow: 0 0 80px rgba(0,212,255,0.05), inset 0 0 60px rgba(0,212,255,0.02);
+}
+
+.glass-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0,212,255,0.05) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.glass-panel::after {
+  content: '';
+  position: absolute;
+  top: -1px; left: 20%; right: 20%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+}
+
+.glass-label {
+  font-family: 'Orbitron', monospace;
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: #00d4ff;
+  margin-bottom: 24px;
+}
+
+.glass-title {
+  font-family: 'Orbitron', monospace;
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 900;
+  line-height: 1.2;
+  margin-bottom: 32px;
+}
+
+.glass-desc {
+  font-family: 'Exo 2', sans-serif;
+  font-size: 16px;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.9;
+  margin-bottom: 40px;
+}
+
+.github-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid rgba(0,212,255,0.4);
+  color: #00d4ff;
+  padding: 16px 32px;
+  font-family: 'Orbitron', monospace;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+.github-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0,212,255,0.1);
+  transform: translateX(-100%);
+  transition: transform 0.4s ease;
+}
+
+.github-btn:hover { box-shadow: 0 0 30px rgba(0,212,255,0.3); color: white; }
+.github-btn:hover::before { transform: translateX(0); }
+
+/* Sun/Cosmic Section */
+#cosmic-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+#cosmic-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+}
+
+.cosmic-panels {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.orbit-panel {
+  position: absolute;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(0,212,255,0.15);
+  backdrop-filter: blur(8px);
+  padding: 20px 28px;
+  font-family: 'Exo 2', sans-serif;
+  font-size: 13px;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 1px;
+}
+
+/* Ball Physics Section */
+#physics-section {
+  height: 400px;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(to bottom, #020008, #000510);
+}
+
+#physics-canvas {
+  width: 100%; height: 100%;
+}
+
+.reveal-text {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Orbitron', monospace;
+  font-size: clamp(16px, 3vw, 32px);
+  font-weight: 900;
+  color: #00d4ff;
+  text-shadow: 0 0 40px rgba(0,212,255,0.8);
+  opacity: 0;
+  white-space: nowrap;
+  letter-spacing: 4px;
+  transition: opacity 1s ease;
+}
+
+.reveal-text.show { opacity: 1; }
+
+/* Contact Cards */
+#contact-section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 40px;
+  background: linear-gradient(to bottom, #000510, #020008);
+}
+
+.contact-title {
+  font-family: 'Orbitron', monospace;
+  font-size: clamp(24px, 4vw, 48px);
+  font-weight: 900;
+  letter-spacing: 4px;
+  margin-bottom: 80px;
+  text-align: center;
+  color: white;
+}
+
+.contact-title span { color: #00d4ff; }
+
+.cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  max-width: 600px;
+}
+
+.contact-card {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(0,212,255,0.15);
+  padding: 32px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  opacity: 0;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 2px;
+  background: #00d4ff;
+  box-shadow: 0 0 20px rgba(0,212,255,0.8);
+}
+
+.contact-card:hover {
+  background: rgba(0,212,255,0.05);
+  border-color: rgba(0,212,255,0.4);
+  transform: translateX(8px);
+  box-shadow: 0 0 40px rgba(0,212,255,0.1);
+}
+
+.contact-card.from-left { transform: translateX(-60px); }
+.contact-card.from-right { transform: translateX(60px); }
+.contact-card.visible { opacity: 1; transform: translateX(0); }
+.contact-card:hover { transform: translateX(8px) !important; }
+
+.card-icon { font-size: 32px; margin-right: 20px; }
+
+.card-info { flex: 1; }
+.card-label {
+  font-family: 'Orbitron', monospace;
+  font-size: 11px;
+  letter-spacing: 4px;
+  color: #00d4ff;
+  margin-bottom: 6px;
+}
+
+.card-name {
+  font-family: 'Exo 2', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+}
+
+.card-btn {
+  border: 1px solid rgba(0,212,255,0.4);
+  color: #00d4ff;
+  background: transparent;
+  font-family: 'Orbitron', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  padding: 10px 20px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.card-btn:hover {
+  background: #00d4ff;
+  color: #000;
+  box-shadow: 0 0 20px rgba(0,212,255,0.5);
+}
+
+/* Final footer */
+.modern-footer {
+  background: #000;
+  border-top: 1px solid rgba(0,212,255,0.1);
+  padding: 40px;
+  text-align: center;
+  font-family: 'Exo 2', sans-serif;
+  font-size: 13px;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 2px;
+}
+
+.modern-footer span { color: #00d4ff; }
+
+/* Scroll reveal utility */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.9s cubic-bezier(0.16,1,0.3,1);
+}
+
+.scroll-reveal.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 600px) {
+  .glass-panel { padding: 32px 24px; }
+  .contact-card { flex-direction: column; gap: 16px; text-align: center; }
+  .contact-card::before { left:0; top:0; right:0; bottom:auto; width:auto; height:2px; }
+  .cinematic-text { font-size: 18px; }
+}
+</style>
+</head>
+<body>
+
+<!-- PHASE 1 -->
+<div id="phase1">
+  <div class="beginner-header">Welcome To Business</div>
+
+  <div class="beginner-nav">
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+  </div>
+
+  <div class="beginner-marquee">
+    <span class="marquee-inner">★ WELCOME TO OUR WEBSITE ★ WE PROVIDE BEST SERVICES ★ CALL US NOW ★ LIMITED OFFER ★ CONTACT TODAY ★</span>
+  </div>
+
+  <div class="beginner-body">
+    <h2>About Our Company</h2>
+    <div style="overflow:hidden; margin-bottom:14px;">
+      <div class="beginner-img-placeholder">[IMAGE HERE]</div>
+      <p>We are a company that provides many services to our valued customers. Our company was established in 2009 and since then we have been serving clients. We believe in quality and customer satisfaction. Please feel free to contact us for any queries you may have. We are here to help you.</p>
+      <p>Our team is very experienced and professional. We have more than 10 years of experience in this field. We provide best services at affordable prices. Call us today for a free consultation!</p>
+    </div>
+
+    <div class="beginner-counter">Visitor Count: <b>000847</b> &nbsp;|&nbsp; Last Updated: 12/03/2018</div>
+
+    <h2>Our Services</h2>
+    <table class="beginner-table">
+      <tr><th>Service</th><th>Price</th><th>Duration</th></tr>
+      <tr><td>Basic Package</td><td>Rs. 500</td><td>1 Week</td></tr>
+      <tr><td>Standard Package</td><td>Rs. 1200</td><td>2 Weeks</td></tr>
+      <tr><td>Premium Package</td><td>Rs. 2500</td><td>1 Month</td></tr>
+    </table>
+
+    <h2>Contact Us</h2>
+    <p>Email: business@email.com &nbsp;|&nbsp; Phone: 9876543210 &nbsp;|&nbsp; Address: Mumbai, India</p>
+    <br>
+    <button class="beginner-btn">Submit Form</button>
+    <button class="beginner-btn">Learn More</button>
+    <button class="beginner-btn">Download Brochure</button>
+
+    <br><br>
+    <div class="beginner-img-placeholder" style="float:none; width:100%; height:60px; font-size:13px;">[ ADVERTISEMENT BANNER 728x90 ]</div>
+  </div>
+
+  <div class="beginner-footer">
+    &copy; 2018 Welcome To Business. All Rights Reserved. | Designed by: Student | Best viewed in Internet Explorer 1024x768
+  </div>
+</div>
+
+<!-- TRANSITION ZONE -->
+<div id="transition-zone">
+  <div id="dark-overlay"></div>
+  <canvas id="particle-canvas"></canvas>
+
+  <div class="transition-content" id="transition-content">
+    <div class="cinematic-text">
+      <span class="line" id="tl1">Tired of such websites?</span>
+      <span class="line" id="tl2" style="transition-delay:0.3s"><span class="highlight">You are correct.</span></span>
+      <span class="line" id="tl3" style="transition-delay:0.6s">This is the era of <span class="highlight">2026.</span></span>
+      <span class="line" id="tl4" style="transition-delay:0.9s">Click below to see what I can <span class="highlight">really</span> create.</span>
+    </div>
+    <button class="enter-btn" id="enter-btn" onclick="triggerWarp()">
+      <div class="btn-glow"></div>
+      ENTER THE MODERN EXPERIENCE
+    </button>
+  </div>
+</div>
+
+<!-- WARP TRANSITION -->
+<div id="warp-transition">
+  <canvas id="warp-canvas"></canvas>
+  <div class="warp-text" id="warp-text">LOADING REALITY</div>
+</div>
+
+<!-- PHASE 2 -->
+<div id="phase2">
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- HERO -->
+  <section id="hero">
+    <canvas id="hero-canvas"></canvas>
+    <div class="hero-content">
+      <div class="hero-label">PORTFOLIO — 2026</div>
+      <h1 class="hero-title">Welcome To My<br><span class="glow">Website</span></h1>
+      <p class="hero-sub">WEB DEVELOPER · CREATOR · BUILDER</p>
+    </div>
+    <div class="scroll-hint">
+      <span>SCROLL</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- GLASS PANEL -->
+  <section id="glass-section">
+    <div class="glass-panel scroll-reveal" id="glass-panel">
+      <div class="glass-label">// WHAT I CAN DO</div>
+      <h2 class="glass-title">This is what<br>I can do.</h2>
+      <p class="glass-desc">
+        Custom coded websites from scratch. No templates. No shortcuts.<br>
+        Pure HTML, CSS and JavaScript that performs, impresses, and converts.<br><br>
+        Interactive experiences. Cinematic interfaces. Real results.
+      </p>
+      <a href="https://github.com/tanmaycoder12-afk" target="_blank" class="github-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        VIEW GITHUB PROJECTS
+      </a>
+    </div>
+  </section>
+
+  <!-- COSMIC SUN SECTION -->
+  <section id="cosmic-section">
+    <canvas id="cosmic-canvas"></canvas>
+    <div class="cosmic-panels">
+      <div class="orbit-panel scroll-reveal" style="top:15%;left:5%;max-width:200px;">
+        <div style="font-family:'Orbitron',monospace;font-size:9px;color:#00d4ff;letter-spacing:3px;margin-bottom:8px;">SKILL 01</div>
+        Frontend Development
+      </div>
+      <div class="orbit-panel scroll-reveal" style="top:15%;right:5%;max-width:200px;transition-delay:0.2s">
+        <div style="font-family:'Orbitron',monospace;font-size:9px;color:#00d4ff;letter-spacing:3px;margin-bottom:8px;">SKILL 02</div>
+        UI/UX Design
+      </div>
+      <div class="orbit-panel scroll-reveal" style="bottom:20%;left:8%;max-width:200px;transition-delay:0.4s">
+        <div style="font-family:'Orbitron',monospace;font-size:9px;color:#00d4ff;letter-spacing:3px;margin-bottom:8px;">SKILL 03</div>
+        JavaScript & Canvas
+      </div>
+      <div class="orbit-panel scroll-reveal" style="bottom:20%;right:8%;max-width:200px;transition-delay:0.6s">
+        <div style="font-family:'Orbitron',monospace;font-size:9px;color:#00d4ff;letter-spacing:3px;margin-bottom:8px;">SKILL 04</div>
+        Deployment & GitHub
+      </div>
+    </div>
+  </section>
+
+  <!-- BALL PHYSICS -->
+  <section id="physics-section">
+    <canvas id="physics-canvas"></canvas>
+    <div class="reveal-text" id="reveal-text">THIS IS MY TRANSITION SKILLS.</div>
+  </section>
+
+  <!-- CONTACT CARDS -->
+  <section id="contact-section">
+    <h2 class="contact-title scroll-reveal">Connect With <span>Me</span></h2>
+    <div class="cards-container">
+      <div class="contact-card from-left" id="card1">
+        <div class="card-icon">💼</div>
+        <div class="card-info">
+          <div class="card-label">PROFESSIONAL NETWORK</div>
+          <div class="card-name">LinkedIn</div>
+        </div>
+        <a href="https://linkedin.com" target="_blank" class="card-btn">CONNECT</a>
+      </div>
+      <div class="contact-card from-right" id="card2" style="transition-delay:0.2s">
+        <div class="card-icon">🛒</div>
+        <div class="card-info">
+          <div class="card-label">HIRE MY SERVICES</div>
+          <div class="card-name">Fiverr</div>
+        </div>
+        <a href="https://fiverr.com" target="_blank" class="card-btn">HIRE ME</a>
+      </div>
+      <div class="contact-card from-left" id="card3" style="transition-delay:0.4s">
+        <div class="card-icon">⚡</div>
+        <div class="card-info">
+          <div class="card-label">OPEN SOURCE WORK</div>
+          <div class="card-name">GitHub Projects</div>
+        </div>
+        <a href="https://github.com/tanmaycoder12-afk" target="_blank" class="card-btn">EXPLORE</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="modern-footer">
+    TANMAY VANE — WEB DEVELOPER &nbsp;|&nbsp; BUILT WITH <span>DISCIPLINE</span> &nbsp;|&nbsp; © 2026
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════
+// TRANSITION ZONE TRIGGER (Intersection)
+// ═══════════════════════════════════════════
+const transitionZone = document.getElementById('transition-zone');
+const darkOverlay = document.getElementById('dark-overlay');
+const particleCanvas = document.getElementById('particle-canvas');
+const transitionContent = document.getElementById('transition-content');
+let transitionTriggered = false;
+
+const tzObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting && !transitionTriggered) {
+      transitionTriggered = true;
+      runTransitionAnimation();
+    }
+  });
+}, { threshold: 0.3 });
+
+tzObserver.observe(transitionZone);
+
+function runTransitionAnimation() {
+  setTimeout(() => { darkOverlay.style.opacity = '1'; }, 200);
+  setTimeout(() => { particleCanvas.style.opacity = '1'; initTransitionParticles(); }, 800);
+  setTimeout(() => { transitionContent.classList.add('visible'); }, 2000);
+  setTimeout(() => {
+    ['tl1','tl2','tl3','tl4'].forEach((id, i) => {
+      setTimeout(() => {
+        document.getElementById(id).classList.add('show');
+      }, i * 350);
+    });
+  }, 2200);
+}
+
+// Transition particles
+function initTransitionParticles() {
+  const canvas = particleCanvas;
+  const ctx = canvas.getContext('2d');
+  canvas.width = transitionZone.offsetWidth;
+  canvas.height = transitionZone.offsetHeight;
+
+  const particles = Array.from({length: 120}, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    vx: (Math.random() - 0.5) * 0.5,
+    vy: (Math.random() - 0.5) * 0.5,
+    r: Math.random() * 1.5 + 0.3,
+    alpha: Math.random() * 0.6 + 0.1,
+    color: Math.random() > 0.6 ? '#00d4ff' : '#7b2fff'
+  }));
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0) p.x = canvas.width;
+      if (p.x > canvas.width) p.x = 0;
+      if (p.y < 0) p.y = canvas.height;
+      if (p.y > canvas.height) p.y = 0;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.globalAlpha = p.alpha;
+      ctx.fill();
+    });
+
+    // Connect nearby particles
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < 100) {
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = '#00d4ff';
+          ctx.globalAlpha = (1 - dist/100) * 0.15;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+    }
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(draw);
+  }
+  draw();
+}
+
+// ═══════════════════════════════════════════
+// WARP TRANSITION
+// ═══════════════════════════════════════════
+function triggerWarp() {
+  const warp = document.getElementById('warp-transition');
+  const warpCanvas = document.getElementById('warp-canvas');
+  const warpText = document.getElementById('warp-text');
+  warp.classList.add('active');
+  warpCanvas.width = window.innerWidth;
+  warpCanvas.height = window.innerHeight;
+
+  const ctx = warpCanvas.getContext('2d');
+  const cx = warpCanvas.width / 2;
+  const cy = warpCanvas.height / 2;
+  let progress = 0;
+
+  const stars = Array.from({length: 300}, () => ({
+    angle: Math.random() * Math.PI * 2,
+    speed: Math.random() * 3 + 1,
+    dist: Math.random() * 200 + 50,
+    size: Math.random() * 2 + 0.5
+  }));
+
+  function drawWarp() {
+    ctx.fillStyle = 'rgba(0,0,0,0.15)';
+    ctx.fillRect(0, 0, warpCanvas.width, warpCanvas.height);
+
+    progress += 0.012;
+    stars.forEach(s => {
+      s.dist += s.speed * (1 + progress * 8);
+      const x = cx + Math.cos(s.angle) * s.dist;
+      const y = cy + Math.sin(s.angle) * s.dist;
+      const alpha = Math.min(1, s.dist / 100);
+      ctx.beginPath();
+      ctx.arc(x, y, s.size * (1 + progress), 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(0,212,255,${alpha * 0.8})`;
+      ctx.fill();
+
+      if (s.dist > Math.max(warpCanvas.width, warpCanvas.height)) {
+        s.dist = Math.random() * 50 + 20;
+        s.angle = Math.random() * Math.PI * 2;
+      }
+    });
+
+    // Center glow
+    const grad = ctx.createRadialGradient(cx,cy,0, cx,cy,150 + progress*200);
+    grad.addColorStop(0, `rgba(0,212,255,${0.3 + progress*0.3})`);
+    grad.addColorStop(1, 'transparent');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, warpCanvas.width, warpCanvas.height);
+
+    if (progress < 1.5) {
+      requestAnimationFrame(drawWarp);
+    }
+  }
+
+  drawWarp();
+
+  // Show warp text
+  setTimeout(() => {
+    warpText.style.animation = 'heroReveal 0.5s ease forwards';
+    warpText.style.opacity = '1';
+  }, 400);
+
+  // Switch to phase 2
+  setTimeout(() => {
+    document.getElementById('phase1').style.display = 'none';
+    transitionZone.style.display = 'none';
+    warp.style.opacity = '0';
+    warp.style.transition = 'opacity 1s ease';
+    document.getElementById('phase2').classList.add('show');
+    setTimeout(() => { warp.classList.remove('active'); }, 1000);
+    initPhase2();
+  }, 2800);
+}
+
+// ═══════════════════════════════════════════
+// PHASE 2 INIT
+// ═══════════════════════════════════════════
+function initPhase2() {
+  initCursor();
+  initHeroCanvas();
+  initCosmicCanvas();
+  initPhysicsCanvas();
+  initScrollReveal();
+  initContactCards();
+  initGlassTilt();
+}
+
+// Custom cursor
+function initCursor() {
+  const dot = document.getElementById('cursor-dot');
+  const ring = document.getElementById('cursor-ring');
+  let rx = 0, ry = 0, mx = 0, my = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; dot.style.left = mx+'px'; dot.style.top = my+'px'; });
+  function animRing() { rx += (mx-rx)*0.1; ry += (my-ry)*0.1; ring.style.left = rx+'px'; ring.style.top = ry+'px'; requestAnimationFrame(animRing); }
+  animRing();
+  document.querySelectorAll('a,button,.contact-card').forEach(el => {
+    el.addEventListener('mouseenter', () => { dot.style.transform = 'translate(-50%,-50%) scale(3)'; ring.style.transform = 'translate(-50%,-50%) scale(1.5)'; });
+    el.addEventListener('mouseleave', () => { dot.style.transform = 'translate(-50%,-50%) scale(1)'; ring.style.transform = 'translate(-50%,-50%) scale(1)'; });
+  });
+}
+
+// Hero particle canvas
+function initHeroCanvas() {
+  const canvas = document.getElementById('hero-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const pts = Array.from({length: 80}, () => ({
+    x: Math.random()*canvas.width, y: Math.random()*canvas.height,
+    vx: (Math.random()-0.5)*0.3, vy: (Math.random()-0.5)*0.3,
+    r: Math.random()*1.5+0.3
+  }));
+
+  let mx = canvas.width/2, my = canvas.height/2;
+  canvas.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    // Gradient bg
+    const bg = ctx.createRadialGradient(mx,my,0, mx,my,500);
+    bg.addColorStop(0, 'rgba(0,50,80,0.15)');
+    bg.addColorStop(1, 'transparent');
+    ctx.fillStyle = bg;
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+
+    pts.forEach(p => {
+      const dx = mx - p.x; const dy = my - p.y;
+      const dist = Math.sqrt(dx*dx+dy*dy);
+      p.vx += dx/dist*0.02; p.vy += dy/dist*0.02;
+      p.vx *= 0.95; p.vy *= 0.95;
+      p.x += p.vx; p.y += p.vy;
+      if(p.x<0||p.x>canvas.width) p.vx*=-1;
+      if(p.y<0||p.y>canvas.height) p.vy*=-1;
+
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle = 'rgba(0,212,255,0.6)';
+      ctx.fill();
+    });
+
+    for(let i=0;i<pts.length;i++){
+      for(let j=i+1;j<pts.length;j++){
+        const dx=pts[i].x-pts[j].x; const dy=pts[i].y-pts[j].y;
+        const d=Math.sqrt(dx*dx+dy*dy);
+        if(d<120){
+          ctx.beginPath();
+          ctx.moveTo(pts[i].x,pts[i].y);
+          ctx.lineTo(pts[j].x,pts[j].y);
+          ctx.strokeStyle=`rgba(0,212,255,${(1-d/120)*0.2})`;
+          ctx.lineWidth=0.5;
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+}
+
+// Glass panel 3D tilt
+function initGlassTilt() {
+  const panel = document.getElementById('glass-panel');
+  const section = document.getElementById('glass-section');
+  section.addEventListener('mousemove', e => {
+    const rect = panel.getBoundingClientRect();
+    const cx = rect.left + rect.width/2;
+    const cy = rect.top + rect.height/2;
+    const rx = (e.clientY - cy) / rect.height * 12;
+    const ry = (e.clientX - cx) / rect.width * -12;
+    panel.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+  });
+  section.addEventListener('mouseleave', () => {
+    panel.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+  });
+}
+
+// Cosmic sun canvas
+function initCosmicCanvas() {
+  const canvas = document.getElementById('cosmic-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = canvas.parentElement.offsetWidth;
+  canvas.height = canvas.parentElement.offsetHeight;
+
+  const cx = canvas.width/2, cy = canvas.height/2;
+  let t = 0;
+
+  // Orbiting particles around sun
+  const orbitPts = Array.from({length: 60}, (_, i) => ({
+    angle: (i/60)*Math.PI*2,
+    dist: 100 + Math.random()*80,
+    speed: 0.003 + Math.random()*0.005,
+    size: Math.random()*2+0.5,
+    alpha: Math.random()*0.8+0.2
+  }));
+
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    t += 0.01;
+
+    // Big bang / sun glow
+    for(let r=200; r>0; r-=20) {
+      const grad = ctx.createRadialGradient(cx,cy,0, cx,cy,r);
+      grad.addColorStop(0, `rgba(255,200,50,${0.015*(200-r)/200})`);
+      grad.addColorStop(0.4, `rgba(255,100,0,${0.01*(200-r)/200})`);
+      grad.addColorStop(1, 'transparent');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0,0,canvas.width,canvas.height);
+    }
+
+    // Sun core
+    const sunGrad = ctx.createRadialGradient(cx,cy,0, cx,cy,80);
+    sunGrad.addColorStop(0, 'rgba(255,240,180,0.9)');
+    sunGrad.addColorStop(0.3, 'rgba(255,160,20,0.7)');
+    sunGrad.addColorStop(0.7, 'rgba(255,80,0,0.4)');
+    sunGrad.addColorStop(1, 'transparent');
+    ctx.fillStyle = sunGrad;
+    ctx.beginPath();
+    ctx.arc(cx,cy,80,0,Math.PI*2);
+    ctx.fill();
+
+    // Plasma surface noise
+    for(let i=0;i<16;i++){
+      const angle = (i/16)*Math.PI*2 + t*0.5;
+      const blobR = 60 + Math.sin(t*2+i)*15;
+      const bx = cx + Math.cos(angle)*blobR;
+      const by = cy + Math.sin(angle)*blobR;
+      ctx.beginPath();
+      ctx.arc(bx,by,8+Math.sin(t+i)*4,0,Math.PI*2);
+      ctx.fillStyle = `rgba(255,200,50,0.15)`;
+      ctx.fill();
+    }
+
+    // Orbiting particles
+    orbitPts.forEach(p => {
+      p.angle += p.speed;
+      const x = cx + Math.cos(p.angle)*p.dist;
+      const y = cy + Math.sin(p.angle)*p.dist;
+      ctx.beginPath();
+      ctx.arc(x,y,p.size,0,Math.PI*2);
+      ctx.fillStyle = `rgba(0,212,255,${p.alpha})`;
+      ctx.fill();
+    });
+
+    // Energy rays
+    for(let i=0;i<8;i++){
+      const angle = (i/8)*Math.PI*2 + t*0.3;
+      const len = 120 + Math.sin(t*2+i)*30;
+      ctx.beginPath();
+      ctx.moveTo(cx + Math.cos(angle)*75, cy + Math.sin(angle)*75);
+      ctx.lineTo(cx + Math.cos(angle)*len, cy + Math.sin(angle)*len);
+      ctx.strokeStyle = `rgba(255,180,0,0.15)`;
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    }
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+
+  // Set section height
+  canvas.parentElement.style.height = '100vh';
+}
+
+// Physics ball canvas
+function initPhysicsCanvas() {
+  const canvas = document.getElementById('physics-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = canvas.parentElement.offsetWidth;
+  canvas.height = canvas.parentElement.offsetHeight;
+
+  const groundY = canvas.height - 60;
+  const ball = { x: canvas.width/2, y: -30, vy: 0, vx: 4, r: 28, phase: 'fall', bounces: 0 };
+  const gravity = 0.6;
+  const bounce = 0.55;
+  let revealed = false;
+  let running = false;
+
+  // Observe section
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting && !running) { running = true; animate(); } });
+  }, {threshold: 0.3});
+  obs.observe(canvas.parentElement);
+
+  function animate() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    // Ground line
+    const lineGrad = ctx.createLinearGradient(0,groundY,canvas.width,groundY);
+    lineGrad.addColorStop(0,'transparent');
+    lineGrad.addColorStop(0.5,'rgba(0,212,255,0.8)');
+    lineGrad.addColorStop(1,'transparent');
+    ctx.strokeStyle = lineGrad;
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(0,groundY);
+    ctx.lineTo(canvas.width,groundY);
+    ctx.stroke();
+
+    // Glow under line
+    const floorGlow = ctx.createLinearGradient(0,groundY,0,groundY+30);
+    floorGlow.addColorStop(0,'rgba(0,212,255,0.1)');
+    floorGlow.addColorStop(1,'transparent');
+    ctx.fillStyle = floorGlow;
+    ctx.fillRect(0,groundY,canvas.width,30);
+
+    if(ball.phase === 'fall') {
+      ball.vy += gravity;
+      ball.y += ball.vy;
+
+      if(ball.y + ball.r >= groundY) {
+        ball.y = groundY - ball.r;
+        ball.vy *= -bounce;
+        ball.bounces++;
+
+        // Impact ripple
+        ctx.beginPath();
+        ctx.arc(ball.x, groundY, ball.r * (1 + ball.bounces*0.3), 0, Math.PI*2);
+        ctx.strokeStyle = 'rgba(0,212,255,0.4)';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        if(Math.abs(ball.vy) < 1.5) {
+          ball.phase = 'roll';
+          ball.vy = 0;
+        }
+      }
+    } else if(ball.phase === 'roll') {
+      ball.x += ball.vx * 2;
+      ball.y = groundY - ball.r;
+      if(!revealed) { revealed = true; document.getElementById('reveal-text').classList.add('show'); }
+      if(ball.x > canvas.width + ball.r * 2) { ball.phase = 'done'; }
+    }
+
+    if(ball.phase !== 'done') {
+      // Ball shadow
+      ctx.beginPath();
+      ctx.ellipse(ball.x, groundY+4, ball.r*0.7, 6, 0, 0, Math.PI*2);
+      ctx.fillStyle = 'rgba(0,212,255,0.15)';
+      ctx.fill();
+
+      // Ball glow
+      const ballGlow = ctx.createRadialGradient(ball.x,ball.y,0, ball.x,ball.y,ball.r*2);
+      ballGlow.addColorStop(0,'rgba(0,212,255,0.3)');
+      ballGlow.addColorStop(1,'transparent');
+      ctx.fillStyle = ballGlow;
+      ctx.fillRect(ball.x-ball.r*2, ball.y-ball.r*2, ball.r*4, ball.r*4);
+
+      // Ball itself
+      const ballGrad = ctx.createRadialGradient(ball.x-ball.r*0.3, ball.y-ball.r*0.3, 0, ball.x,ball.y,ball.r);
+      ballGrad.addColorStop(0,'rgba(150,240,255,0.9)');
+      ballGrad.addColorStop(0.5,'rgba(0,180,230,0.8)');
+      ballGrad.addColorStop(1,'rgba(0,80,120,0.9)');
+      ctx.beginPath();
+      ctx.arc(ball.x,ball.y,ball.r,0,Math.PI*2);
+      ctx.fillStyle = ballGrad;
+      ctx.fill();
+
+      // Rolling line
+      if(ball.phase === 'roll') {
+        ctx.beginPath();
+        ctx.arc(ball.x,ball.y,ball.r,0,Math.PI*2);
+        ctx.strokeStyle = 'rgba(0,212,255,0.4)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+    }
+
+    if(ball.phase !== 'done') requestAnimationFrame(animate);
+  }
+}
+
+// Scroll reveal
+function initScrollReveal() {
+  const reveals = document.querySelectorAll('#phase2 .scroll-reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, {threshold: 0.15});
+  reveals.forEach(el => obs.observe(el));
+}
+
+// Contact cards
+function initContactCards() {
+  const cards = ['card1','card2','card3'];
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) {
+      cards.forEach((id,i) => {
+        setTimeout(() => { document.getElementById(id).classList.add('visible'); }, i*200);
+      });
+    }});
+  }, {threshold: 0.3});
+  obs.observe(document.getElementById('contact-section'));
+}
+
+window.addEventListener('resize', () => {
+  const hc = document.getElementById('hero-canvas');
+  if(hc) { hc.width = window.innerWidth; hc.height = window.innerHeight; }
+});
+</script>
+</body>
+</html>
